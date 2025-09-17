@@ -1,3 +1,6 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHouse } from "@fortawesome/free-regular-svg-icons";
+
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
@@ -12,11 +15,9 @@ function App() {
 
   return (
     <>
+      <FontAwesomeIcon icon={faHouse} />
       <ContactList contacts={contacts} />
       <Welcome name="John" message="Du har syv ulæste beskeder" />
-      {[0, 1, 2, 3].map((index) => (
-        <Button key={index} color={"#402050"} size={"3rem"} title={"Test"} />
-      ))}
     </>
   );
 }
