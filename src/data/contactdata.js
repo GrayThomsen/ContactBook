@@ -174,7 +174,7 @@ export const contacts = [
     id: 19,
     firstname: "Gollum",
     lastname: "Sméagol",
-    mail: "gollumwastaken@tolkien.org",
+    mail: "ringwastaken@tolkien.org",
     tlf: "Sercret/Safe",
     company: "Fellowship of the Ring",
     position: "Precious",
