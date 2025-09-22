@@ -23,7 +23,7 @@ const initials = (c) =>
 export default function App() {
   const [query, setQuery] = useState("");
 
-  // Filter + group by first letter of full name (as in your mockup)
+  // Filter + group by first letter of full name
   const grouped = useMemo(() => {
     const q = query.toLowerCase().trim();
     const filtered = seed.filter((c) =>
@@ -51,7 +51,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#F3F2EF] text-slate-900">
-      {/* Top Bar (LinkedIn-ish) */}
+      {/* Top Bar */}
       <header className="sticky top-0 z-10 bg-white/90 backdrop-blur border-b">
         <div className="mx-auto max-w-6xl px-4 h-14 flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -79,7 +79,7 @@ export default function App() {
         </div>
       </header>
 
-      {/* Search */}
+      {/* Search Function*/}
       <div className="mx-auto max-w-2xl px-4 py-6">
         <input
           value={query}
@@ -105,7 +105,7 @@ export default function App() {
             >
               {/* Letter rail */}
               <div className="relative">
-                {/* Remove Sticky */}
+                {/* Maybe Remove Sticky */}
                 <div className="sticky top-20">
                   <span className="text-3xl md:text-4xl font-semibold text-slate-800">
                     {letter}
@@ -113,7 +113,7 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Cards for this letter */}
+              {/* Cards for specific letter */}
               <div className="space-y-4 md:space-y-5">
                 {list.map((c) => (
                   <article
@@ -136,12 +136,11 @@ export default function App() {
                         </p>
                       </div>
 
-                      {/* Actions (hook your overlay later) */}
+                      {/* Action Buttons */}
                       <div className="flex items-center gap-2">
                         <button
                           type="button"
                           className="hidden sm:inline-flex items-center rounded-full border px-3 py-1 text-xs md:text-sm hover:bg-slate-50"
-                          // onClick={() => openOverlay(c.id)}
                         >
                           Information
                         </button>
@@ -160,7 +159,7 @@ export default function App() {
                       </div>
                     </div>
 
-                    {/* Optional second row with contact metadata */}
+                    {/* Optional second row with contact data (Maybe only in pop-up?*/}
                     <div className="mt-2 flex flex-wrap gap-x-6 gap-y-1 text-xs text-slate-500">
                       <a className="hover:underline" href={`mailto:${c.mail}`}>
                         {c.mail}
