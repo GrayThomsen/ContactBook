@@ -154,12 +154,12 @@ export const contacts = [
   },
   {
     id: 17,
-    firstname: "Legolas",
-    lastname: "Greenleaf",
-    mail: "legolas@tolkien.org",
-    tlf: "33333333",
+    firstname: "Frodo",
+    lastname: "Baggins",
+    mail: "bigbaggins@tolkien.org",
+    tlf: "51763920",
     company: "Fellowship of the Ring",
-    position: "Archer",
+    position: "Ringbearer",
   },
   {
     id: 18,
