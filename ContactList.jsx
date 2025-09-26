@@ -8,32 +8,36 @@ const initials = (c) =>
     .join("")
     .toUpperCase();
 
-export default function ContactList({ query, seed }) {
+export default function ContactList({ query, seed, onInfo }) {
   // Filter + group by first letter of full name
-  const grouped = useMemo(() => {
-    const q = query.toLowerCase().trim();
-    const filtered = seed.filter((c) =>
-      [fullName(c), c.company, c.position, c.mail, String(c.tlf)]
-        .join(" ")
-        .toLowerCase()
-        .includes(q)
-    );
+  const grouped = useMemo(
+    () => {
+      const q = query.toLowerCase().trim();
+      const filtered = seed.filter((c) =>
+        [fullName(c), c.company, c.position, c.mail, String(c.tlf)]
+          .join(" ")
+          .toLowerCase()
+          .includes(q)
+      );
 
-    const map = new Map();
-    filtered.forEach((c) => {
-      const letter = fullName(c).charAt(0).toUpperCase();
-      if (!map.has(letter)) map.set(letter, []);
-      map.get(letter).push(c);
-    });
+      const map = new Map();
+      filtered.forEach((c) => {
+        const letter = fullName(c).charAt(0).toUpperCase();
+        if (!map.has(letter)) map.set(letter, []);
+        map.get(letter).push(c);
+      });
 
-    // Sort letters A→Z and contacts A→Z within each group
-    return Array.from(map.entries())
-      .sort(([a], [b]) => a.localeCompare(b))
-      .map(([letter, list]) => [
-        letter,
-        list.sort((a, b) => fullName(a).localeCompare(fullName(b))),
-      ]);
-  }, [query]);
+      // Sort letters A→Z and contacts A→Z within each group
+      return Array.from(map.entries())
+        .sort(([a], [b]) => a.localeCompare(b))
+        .map(([letter, list]) => [
+          letter,
+          list.sort((a, b) => fullName(a).localeCompare(fullName(b))),
+        ]);
+    },
+    // Without the seed dependency, the component didn't change with the new additions made by "AddContactModal.jsx"
+    [query, seed]
+  );
   return (
     <main className="mx-auto max-w-5xl px-4 pb-24">
       <div className="rounded-2xl bg-white shadow-sm border border-slate-200 p-4 md:p-6">
@@ -50,7 +54,7 @@ export default function ContactList({ query, seed }) {
           >
             {/* Letter rail */}
             <div className="relative">
-              {/* Maybe Remove Sticky */}
+              {/* Maybe Remove Sticky? */}
               <div className="sticky top-20">
                 <span className="text-3xl md:text-4xl font-semibold text-slate-800">
                   {letter}
@@ -85,6 +89,7 @@ export default function ContactList({ query, seed }) {
                     <div className="flex items-center gap-2">
                       <button
                         type="button"
+                        onClick={() => onInfo(c)}
                         className="hidden sm:inline-flex items-center rounded-full border px-3 py-1 text-xs md:text-sm hover:bg-slate-50"
                       >
                         Information
