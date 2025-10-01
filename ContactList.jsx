@@ -1,5 +1,7 @@
 import { useMemo } from "react";
 
+
+
 const fullName = (c) => `${c.firstname} ${c.lastname}`.trim();
 const initials = (c) =>
   fullName(c)
